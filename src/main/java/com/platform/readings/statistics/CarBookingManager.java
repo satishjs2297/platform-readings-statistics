@@ -8,6 +8,7 @@ public class CarBookingManager {
 
 	private List<Car> cars = new ArrayList<>();
 	private Integer noOfCars;
+	private volatile Integer totalCompletedRides = 0;
 
 	protected boolean[] used;
 
@@ -69,14 +70,14 @@ public class CarBookingManager {
 		putCar(car);
 		passengerSemaphore.release();
 		System.out.println("Passenger Completed Ride on Car :: " + car);
-		System.out.println("Ride Finished ...");
+		System.out.println("Ride Finished ...Total Finished Rides :: "+ (++totalCompletedRides));
 	}
 
 	public static void main(String[] args) throws Exception {
 
-		Integer totalPassenger = 100;
+		Integer totalPassenger = 40;
 		CarBookingManager bookingManager = new CarBookingManager(10, 20);
-		for (int i = 1; i < totalPassenger; i++) {
+		for (int i = 1; i <= totalPassenger; i++) {
 			new Thread(new Runnable() {
 				@Override
 				public void run() {
