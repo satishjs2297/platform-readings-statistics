@@ -75,28 +75,21 @@ public class CarBookingManager {
 
 	public static void main(String[] args) throws Exception {
 
-//		Integer totalPassenger = 60;
-//		CarBookingManager bookingManager = new CarBookingManager(10, 20);
-//		for (int i = 1; i <= totalPassenger; i++) {
-//			new Thread(new Runnable() {
-//				@Override
-//				public void run() {
-//					try {
-//						bookingManager.beginRide();
-//					} catch (Exception e) {
-//						System.err.println(e);
-//					}
-//				}
-//			}).start();
-//			Thread.sleep(100);
-//		}
-		
-		String value = "";
-		for(int i =0; i< 20; i++) {
-			value += i + "	";
-			
+		Integer totalPassenger = 40;
+		CarBookingManager bookingManager = new CarBookingManager(10, 20);
+		for (int i = 1; i <= totalPassenger; i++) {
+			new Thread(new Runnable() {
+				@Override
+				public void run() {
+					try {
+						bookingManager.beginRide();
+					} catch (Exception e) {
+						System.err.println(e);
+					}
+				}
+			}).start();
+			Thread.sleep(100);
 		}
-		System.out.println(value.split("\t").length);
 	}
 
 }
